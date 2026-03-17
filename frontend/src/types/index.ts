@@ -11,3 +11,9 @@ export interface Project {
   tags: string[];
   featured: boolean;
 }
+
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message?: string;
+}
