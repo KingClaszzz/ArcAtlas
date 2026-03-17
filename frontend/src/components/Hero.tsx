@@ -28,7 +28,7 @@ export function Hero() {
         >
           Welcome to the <br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-500">
-            Arc Showcase
+            Arc Atlas
           </span>
         </motion.h1>
 

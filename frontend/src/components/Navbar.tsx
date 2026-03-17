@@ -19,7 +19,7 @@ export function Navbar() {
               <img src="/arc_logo.jpg" alt="Arc Logo" className="w-full h-full object-cover rounded-[10px]" />
             </div>
             <span className="text-xl font-black tracking-tight text-white">
-              Arc<span className="text-emerald-400">Showcase</span>
+              Arc<span className="text-emerald-400">Atlas</span>
             </span>
           </a>
 

@@ -5,7 +5,7 @@ import ArcAgent from "@/components/ArcAgent";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Arc Showcase Hub",
+  title: "Arc Atlas Hub",
   description: "Discover projects built on the Arc ecosystem",
   icons: {
     icon: "/arc_logo.jpg",

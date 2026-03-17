@@ -19,7 +19,7 @@ export function Footer() {
                   <img src={ArcLogo.src} alt="Arc Logo" className="w-full h-full object-cover rounded-xl" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-black text-white tracking-tight font-outfit leading-tight">Arc Showcase Hub</h2>
+                  <h2 className="text-xl font-black text-white tracking-tight font-outfit leading-tight">Arc Atlas Hub</h2>
                   <p className="text-[11px] uppercase tracking-[0.3em] font-black text-emerald-500/50 mt-1">Community Ecosystem</p>
                 </div>
               </div>
@@ -34,13 +34,13 @@ export function Footer() {
               <span className={badgeStyle}>Web3</span>
             </div>
           </div>
-
+ 
           {/* Navigation Links */}
           <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-12 lg:gap-8">
             <div className="space-y-6 text-left">
               <h4 className="text-[11px] font-black text-white/30 uppercase tracking-[0.3em]">Explore</h4>
               <ul className="space-y-4">
-                <li><Link href="/" className="text-slate-400 hover:text-emerald-400 transition-colors font-semibold text-sm">Arc Showcase</Link></li>
+                <li><Link href="/" className="text-slate-400 hover:text-emerald-400 transition-colors font-semibold text-sm">Arc Atlas</Link></li>
                 <li><Link href="/governance" className="text-slate-400 hover:text-emerald-400 transition-colors font-semibold text-sm">Governance</Link></li>
                 <li><Link href="/governance" className="text-slate-400 hover:text-emerald-400 transition-colors font-semibold text-sm">Submit Build</Link></li>
               </ul>
@@ -66,10 +66,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-8 border-t border-white/[0.03] flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-zinc-600 text-[11px] font-medium opacity-60">
-            © 2026 Arc Showcase Hub · Built for the Arc Community
+            © 2026 Arc Atlas Hub · Built for the Arc Community
           </div>
           
           <div className="flex items-center gap-4 lg:pr-12 group cursor-default">

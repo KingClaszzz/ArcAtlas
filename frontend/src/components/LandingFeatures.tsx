@@ -33,7 +33,7 @@ export function LandingFeatures() {
     return (
         <section className="py-24 px-5 max-w-6xl mx-auto">
             <div className="text-center mb-16">
-                <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">Why Arc Showcase?</h2>
+                <h2 className="text-3xl sm:text-4xl font-black text-white mb-4">Why Arc Atlas?</h2>
                 <p className="text-zinc-500 max-w-xl mx-auto">Providing a seamless interface for the most advanced blockchain ecosystem.</p>
             </div>
 

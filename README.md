@@ -1,9 +1,9 @@
-# Arc Showcase
+# Arc Atlas
 
-A premium Web3 platform for discovering and interacting with projects built on the Arc network. Features a managed ecosystem directory, community governance, and an AI Transaction Agent.
+A premium Web3 platform for discovering and interacting with projects built on the Arc network. Features a foundational ecosystem directory, community governance, and an AI Transaction Agent.
 
 ## Core Features
-- **Project Directory**: Curated list of verified projects building on Arc.
+- **Project Atlas**: Curated directory of verified projects building on Arc.
 - **Ecosystem Governance**: Community-driven project submissions and review process.
 - **ArcBot (AI Agent)**: Live assistant for network knowledge, wallet portfolio discovery, and intent-based transactions.
 - **Non-Custodial**: Fully integrated with WalletConnect and wagmi; you sign everything.
@@ -14,7 +14,7 @@ A premium Web3 platform for discovering and interacting with projects built on t
 1. `cd backend`
 2. `npm install`
 3. Configure `.env`:
-   - `DATABASE_URL`: PostgreSQL connection string (e.g., Supabase/Railway)
+   - `DATABASE_URL`: PostgreSQL connection string (Neon/Supabase)
    - `JATEVO_API_KEY`: API key for the AI engine
    - `SESSION_SECRET`: Secure string for auth sessions
 4. `npx prisma db push` (Sync database schema)
@@ -24,7 +24,7 @@ A premium Web3 platform for discovering and interacting with projects built on t
 1. `cd frontend`
 2. `npm install`
 3. Configure `.env`:
-   - `NEXT_PUBLIC_API_URL`: Backend URL (default: http://localhost:4000)
+   - `NEXT_PUBLIC_API_URL`: Backend URL (e.g. Railway URL)
    - `NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID`: Your project ID from cloud.walletconnect.com
 4. `npm run dev`
 

@@ -30,8 +30,8 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(session({
-  name: "arc_showcase_session",
-  secret: process.env.SESSION_SECRET || "arc-showcase-v1-secret",
+  name: "arc_atlas_session",
+  secret: process.env.SESSION_SECRET || "arc-atlas-v1-secret",
   resave: false,
   saveUninitialized: false,
   proxy: true,

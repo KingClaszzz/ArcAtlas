@@ -29,7 +29,7 @@ export function LandingHero() {
                 </h1>
 
                 <p className="text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
-                    Discover, vote, and track projects featured in the Arc Showcase.
+                    Discover, vote, and track projects featured in the Arc Atlas.
                     Connect your wallet to participate.
                 </p>
 
