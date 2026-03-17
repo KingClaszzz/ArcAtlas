@@ -23,7 +23,6 @@ export default function GovernancePage() {
     const [description, setDescription] = useState("");
     const [websiteUrl, setWebsiteUrl] = useState("");
     const [imageUrl, setImageUrl] = useState("");
-    const [imageFile, setImageFile] = useState<File | null>(null);
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const [forumUrl, setForumUrl] = useState("");
     const [twitterUrl, setTwitterUrl] = useState("");
@@ -35,14 +34,6 @@ export default function GovernancePage() {
             fetchProjects();
         }
     }, [isConnected]);
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setImageFile(file);
-            setPreviewUrl(URL.createObjectURL(file));
-        }
-    };
 
     const fetchProjects = async () => {
         try {
@@ -65,24 +56,17 @@ export default function GovernancePage() {
             return;
         }
         try {
-            const formData = new FormData();
-            formData.append("name", name);
-            formData.append("description", description);
-            formData.append("websiteUrl", websiteUrl);
-            formData.append("forumUrl", forumUrl);
-            formData.append("twitterUrl", twitterUrl);
-            if (imageFile) {
-                formData.append("image", imageFile);
-            } else if (imageUrl) {
-                formData.append("imageUrl", imageUrl);
-            } else {
-                // If no image is provided, use the official Arc Logo as default
-                formData.append("imageUrl", "/arc_logo.jpg");
-            }
+            const payload = {
+                name,
+                description,
+                websiteUrl,
+                forumUrl,
+                twitterUrl,
+                imageUrl: imageUrl || "/arc_logo.jpg"
+            };
 
-            await axios.post(`${API_URL}/projects`, formData, {
+            await axios.post(`${API_URL}/projects`, payload, {
                 headers: {
-                    'Content-Type': 'multipart/form-data',
                     'x-wallet-address': address
                 }
             });
@@ -90,7 +74,7 @@ export default function GovernancePage() {
             setName("");
             setDescription("");
             setWebsiteUrl("");
-            setImageFile(null);
+            setImageUrl("");
             setPreviewUrl(null);
             setForumUrl("");
             setTwitterUrl("");
@@ -233,31 +217,35 @@ export default function GovernancePage() {
                                     <input required value={twitterUrl} onChange={e => setTwitterUrl(e.target.value)} className="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-white font-medium focus:border-emerald-500/50 focus:bg-emerald-500/[0.02] outline-none transition-all" placeholder="e.g. @username or x.com/username" />
                                 </div>
                                 <div className="col-span-full space-y-4">
-                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest px-1">Project Logo Selection</label>
+                                    <label className="text-xs font-bold text-slate-500 uppercase tracking-widest px-1">Project Logo (Image URL)</label>
                                     <div className="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/5">
                                         <div className="w-24 h-24 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center overflow-hidden flex-shrink-0">
                                             {previewUrl ? (
-                                                <img src={previewUrl} alt="Preview" className="w-full h-full object-cover" />
+                                                <img 
+                                                    src={previewUrl} 
+                                                    alt="Preview" 
+                                                    className="w-full h-full object-cover"
+                                                    onError={() => setPreviewUrl(null)}
+                                                />
                                             ) : (
-                                                <Plus className="w-8 h-8 text-slate-600" />
+                                                <div className="flex flex-col items-center gap-1 text-slate-600">
+                                                    <Plus className="w-6 h-6" />
+                                                    <span className="text-[10px] font-bold">No Image</span>
+                                                </div>
                                             )}
                                         </div>
-                                        <div className="flex-1 space-y-2 text-center sm:text-left">
-                                            <p className="text-sm text-slate-400 font-medium">Upload a square logo for your project (JPG, PNG, WEBP)</p>
-                                            <div className="flex flex-wrap items-center gap-3">
-                                                <label className="cursor-pointer px-4 py-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold hover:bg-emerald-500/20 transition-all">
-                                                    Choose From Device
-                                                    <input type="file" className="hidden" accept="image/*" onChange={handleFileChange} />
-                                                </label>
-                                                <span className="text-xs text-slate-600 font-bold">OR</span>
+                                        <div className="flex-1 space-y-3 w-full">
+                                            <p className="text-sm text-slate-400 font-medium px-1">Paste a direct link to your project's logo (JPG, PNG, or WEBP)</p>
+                                            <div className="relative group">
                                                 <input
+                                                    required
                                                     value={imageUrl}
                                                     onChange={e => {
                                                         setImageUrl(e.target.value);
                                                         setPreviewUrl(e.target.value);
                                                     }}
-                                                    className="flex-1 min-w-[200px] bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-xs text-white font-medium focus:border-emerald-500/50 outline-none"
-                                                    placeholder="Paste Image URL"
+                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-medium focus:border-emerald-500/50 outline-none transition-all"
+                                                    placeholder="https://example.com/logo.png"
                                                 />
                                             </div>
                                         </div>

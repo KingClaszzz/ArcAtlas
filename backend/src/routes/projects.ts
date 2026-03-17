@@ -1,19 +1,5 @@
 import { Router } from "express";
 import { prisma } from "../lib/prisma";
-import multer from "multer";
-import path from "path";
-
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, "uploads/");
-  },
-  filename: (_req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({ storage: storage });
-
 const router = Router();
 
 // Auth middleware (Simplified: Trust the wallet address header for development)
@@ -104,19 +90,20 @@ router.get("/recommend", async (req, res) => {
 });
 
 // POST /api/projects
-router.post("/", isAuthenticated, upload.single("image"), async (req: any, res) => {
+router.post("/", isAuthenticated, async (req: any, res) => {
   try {
-    const { name, description, websiteUrl, forumUrl, twitterUrl } = req.body;
-    let imageUrl = req.body.imageUrl;
-
-    if (req.file) {
-      // Use the host from the request to build the full URL
-      const host = req.get('host');
-      imageUrl = `${req.protocol}://${host}/uploads/${req.file.filename}`;
-    }
-
+    const { name, description, websiteUrl, forumUrl, twitterUrl, imageUrl } = req.body;
+    
     const project = await prisma.project.create({
-      data: { name, description, websiteUrl, imageUrl, forumUrl, twitterUrl, status: "PENDING" }
+      data: { 
+        name, 
+        description, 
+        websiteUrl, 
+        imageUrl: imageUrl || "/arc_logo.jpg", 
+        forumUrl, 
+        twitterUrl, 
+        status: "PENDING" 
+      }
     });
     res.json({ success: true, data: project });
   } catch (e) {
