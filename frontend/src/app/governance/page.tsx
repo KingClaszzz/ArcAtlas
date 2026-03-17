@@ -2,7 +2,7 @@
 
 import { useWallet } from "@/hooks/useWallet";
 import { useIsMounted } from "@/hooks/useIsMounted";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWeb3Modal } from "@web3modal/wagmi/react";
@@ -33,9 +33,9 @@ export default function GovernancePage() {
         if (isConnected) {
             fetchProjects();
         }
-    }, [isConnected]);
+    }, [isConnected, fetchProjects]);
 
-    const fetchProjects = async () => {
+    const fetchProjects = useCallback(async () => {
         try {
             setLoading(true);
             const res = await axios.get(`${API_URL}/projects?status=PENDING`);
@@ -47,7 +47,7 @@ export default function GovernancePage() {
         } finally {
             setLoading(false);
         }
-    };
+    }, [API_URL]);
 
     const submitProject = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -235,7 +235,7 @@ export default function GovernancePage() {
                                             )}
                                         </div>
                                         <div className="flex-1 space-y-3 w-full">
-                                            <p className="text-sm text-slate-400 font-medium px-1">Paste a direct link to your project's logo (JPG, PNG, or WEBP)</p>
+                                            <p className="text-sm text-slate-400 font-medium px-1">Paste a direct link to your project&apos;s logo (JPG, PNG, or WEBP)</p>
                                             <div className="relative group">
                                                 <input
                                                     required
