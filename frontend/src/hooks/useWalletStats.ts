@@ -72,8 +72,8 @@ export function useWalletStats() {
       }
 
       setData({
-        usdc: formatUnits(usdcBalance, 6),
-        eurc: formatUnits(eurcBalance, 6),
+        usdc: formatUnits(usdcBalance as bigint, 6),
+        eurc: formatUnits(eurcBalance as bigint, 6),
         txs
       });
     } catch (err) {
