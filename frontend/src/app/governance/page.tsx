@@ -29,12 +29,6 @@ export default function GovernancePage() {
 
     const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000") + "/api";
 
-    useEffect(() => {
-        if (isConnected) {
-            fetchProjects();
-        }
-    }, [isConnected, fetchProjects]);
-
     const fetchProjects = useCallback(async () => {
         try {
             setLoading(true);
@@ -48,6 +42,12 @@ export default function GovernancePage() {
             setLoading(false);
         }
     }, [API_URL]);
+
+    useEffect(() => {
+        if (isConnected) {
+            fetchProjects();
+        }
+    }, [isConnected, fetchProjects]);
 
     const submitProject = async (e: React.FormEvent) => {
         e.preventDefault();
